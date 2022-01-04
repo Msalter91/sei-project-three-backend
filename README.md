@@ -10,3 +10,4 @@
 * `npm run dev` - Run the app in development mode
 
 Mike Salter
+Alex Chan
