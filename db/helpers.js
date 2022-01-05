@@ -8,3 +8,12 @@ export function connectToDatabase () {
     useCreateIndex: true,
   })
 }
+
+export function truncateDb() {
+  return mongoose.connection.db.dropDatabase()
+}
+export function disconnectDb() {
+  if (mongoose.connection.readyState !== 0) {
+    return mongoose.disconnect()
+  }
+}
