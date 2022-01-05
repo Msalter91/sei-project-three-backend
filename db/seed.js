@@ -1,5 +1,5 @@
 import Country from '../models/country.js'
-import countires from './data/countires.js'
+import countires from './data/countries.js'
 import { connectToDatabase, truncateDb, disconnectDb } from './helpers.js'
 
 async function seed() {
