@@ -27,5 +27,8 @@ router.route('/memories')
   .post(memories.create)
   .get(memories.index)
 
+router.route('/memories/:memoryId')
+  .delete(memories.delete)
+
 
 export default router

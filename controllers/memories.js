@@ -1,4 +1,5 @@
 import Memory from '../models/memory.js'
+import { NotFound } from '../lib/errors.js'
 
 
 
@@ -22,7 +23,24 @@ async function memoryIndex (req, res, next) {
   }
 }
 
+// Delete a trip
+
+async function memoryDelete (req, res, next) {
+  const { memoryId } = req.params 
+  try {
+    const memoryToDelete = await Memory.findById(memoryId)
+    if (!memoryToDelete) {
+      throw new NotFound()
+    }
+    await memoryToDelete.remove()
+    return res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export default {
   create: memoryCreate,
   index: memoryIndex,
+  delete: memoryDelete,
 }
