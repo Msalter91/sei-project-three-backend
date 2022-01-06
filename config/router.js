@@ -3,6 +3,7 @@ import express from 'express'
 import countries from '../controllers/countries.js'
 import memories from '../controllers/memories.js'
 import trips from '../controllers/trips.js'
+import user from '../controllers/auth.js'
 
 
 const router = express.Router()
@@ -31,5 +32,9 @@ router.route('/memories/:memoryId')
   .delete(memories.delete)
   .get(memories.show)
   .put(memories.edit)
+
+//Users
+router.route('/register')
+  .post(user.register)
 
 export default router
