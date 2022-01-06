@@ -25,6 +25,7 @@ router.route('/trips/:tripId')
 // Memories 
 router.route('/memories')
   .post(memories.create)
+  .get(memories.index)
 
 
 export default router

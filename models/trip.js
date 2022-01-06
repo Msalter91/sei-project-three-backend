@@ -4,10 +4,9 @@ const tripSchema = new mongoose.Schema({
   title: { type: String, maxlength: 50,required: true },
   notes: { type: String, maxlength: 300 },
   countryVisited: { type: String, required: true },
-  dateStarted: { type: Date },
-  dateFinished: { type: Date },
-  // todo add 
-  // memories: [{ type: mongoose.Schema.ObjectId, ref: 'memory' }],
+  dateStarted: { type: String },
+  dateFinished: { type: String },
+  memories: [{ type: mongoose.Schema.ObjectId, ref: 'Memory' }],
 })
 
 // todo add virtuals centerPoint, isPlanned, summaryImage 

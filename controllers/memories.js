@@ -12,6 +12,17 @@ async function memoryCreate (req, res, next) {
   }
 }
 
+// index of Memories 
+async function memoryIndex (req, res, next) {
+  try {
+    const memories = await Memory.find()
+    return res.status(200).json(memories)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export default {
   create: memoryCreate,
+  index: memoryIndex,
 }
