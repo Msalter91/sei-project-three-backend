@@ -1,6 +1,9 @@
 import User from '../models/user.js'
 
-async function registerUser(req, res, next) {
+import jwt from 'jsonwebtoken'
+import { secret } from '../config/environment.js'
+
+async function register(req, res, next) {
   try { 
     const createdUser = await User.create(req.body)
     return res.status(201).json({
@@ -11,6 +14,21 @@ async function registerUser(req, res, next) {
   }
 }
 
+async function login (req, res, next) {
+  try {
+    const user = await User.findOne( {
+      email: req.body.email })
+    if (!user || !user.validatePassword(req.body.password)) {
+      throw new Error
+    }
+    const token = jwt.sign( { sub: user._id }, secret, { expiresIn: '24 hours' } )
+    return res.status(202).json( { message: 'welcome back', token })
+  } catch (err) {
+    next(err)
+  }
+}
+
 export default {
-  register: registerUser,
+  register,
+  login,
 }

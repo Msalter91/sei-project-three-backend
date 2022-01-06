@@ -37,4 +37,7 @@ router.route('/memories/:memoryId')
 router.route('/register')
   .post(user.register)
 
+router.route('/login')
+  .post(user.login)
+
 export default router
