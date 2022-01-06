@@ -23,8 +23,7 @@ async function memoryIndex (req, res, next) {
   }
 }
 
-// Delete a trip
-
+// Delete a Memory
 async function memoryDelete (req, res, next) {
   const { memoryId } = req.params 
   try {
@@ -39,8 +38,27 @@ async function memoryDelete (req, res, next) {
   }
 }
 
+// Show a single memory 
+async function memoryShow (req, res, next) {
+  const { memoryId } = req.params 
+  try {
+    const memoryToShow = await Memory.findById(memoryId)
+    if (!memoryToShow) {
+      throw new NotFound()
+    }
+    return res.status(200).json(memoryToShow)
+  } catch (err) {
+    next(err)
+  }
+}
+
+
+
+
+
 export default {
   create: memoryCreate,
   index: memoryIndex,
   delete: memoryDelete,
+  show: memoryShow,
 }
