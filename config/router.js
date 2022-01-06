@@ -1,5 +1,7 @@
 import express from 'express'
+
 import countries from '../controllers/countries.js'
+import memories from '../controllers/memories.js'
 import trips from '../controllers/trips.js'
 
 
@@ -19,6 +21,10 @@ router.route('/trips/:tripId')
   .delete(trips.delete)
   .get(trips.show)
   .put(trips.edit)
+
+// Memories 
+router.route('/memories')
+  .post(memories.create)
 
 
 export default router
