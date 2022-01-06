@@ -1,3 +1,4 @@
+import { NotFound } from '../lib/errors.js'
 import trip from '../models/trip.js'
 
 // add a trip 
@@ -12,51 +13,61 @@ async function tripCreate (req, res) {
   }
 }
 
+async function tripIndex (req, res, next) {
+  try { 
+    const trips = await trip.find()
+    return res.status(200).json(trips) 
+  } catch (err) {
+    next(err)
+  }
+}
+
 // Delete a trip
 
-async function tripDelete (req, res) {
+async function tripDelete (req, res, next) {
   const { tripId } = req.params 
   try {
     const tripToDelete = await trip.findById(tripId)
     if (!tripToDelete) {
-      throw new Error
+      throw new NotFound()
     }
     await tripToDelete.remove()
     return res.status(204)
   } catch (err) {
-    console.log(err)
+    next(err)
   }
 }
 
-async function tripShow (req, res) {
+async function tripShow (req, res, next) {
   const { tripId } = req.params 
   try {
     const tripToShow = await trip.findById(tripId)
     if (!tripToShow) {
-      return res.status(404)
+      throw new NotFound()
     }
     return res.status(200).json(tripToShow)
   } catch (err) {
-    console.log(err)
+    next(err)
   }
 }
 
-async function tripEdit (req, res) {
+async function tripEdit (req, res, next) {
   const { tripId } = req.params
   try {
     const tripToEdit = await trip.findById(tripId)
     if (!tripToEdit) {
-      return res.status(404)
+      throw new NotFound()
     }
     Object.assign(tripToEdit, req.body)
     await tripToEdit.save()
     return res.status(202).json(tripToEdit)
   } catch (err) {
-    console.log(err)
+    next(err)
   }
 }
 
 export default {
+  index: tripIndex,
   create: tripCreate, 
   delete: tripDelete,
   show: tripShow,

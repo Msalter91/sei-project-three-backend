@@ -13,6 +13,7 @@ router.route('/countries')
 // Trips
 router.route('/trips')
   .post(trips.create)
+  .get(trips.index)
 
 router.route('/trips/:tripId')
   .delete(trips.delete)

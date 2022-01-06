@@ -6,11 +6,13 @@ import country from './models/country.js'
 
 import logger from './lib/logger.js'
 import router from './config/router.js'
+import errorHandler from './lib/errorHandler.js'
 
 const app = express()
 app.use('/', logger)
 app.use(express.json())
 app.use(router)
+app.use(errorHandler)
 
 app.get('/countries', async (req, res) => {
   const countries = await country.find()
