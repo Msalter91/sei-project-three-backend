@@ -30,6 +30,6 @@ router.route('/memories')
 router.route('/memories/:memoryId')
   .delete(memories.delete)
   .get(memories.show)
-
+  .put(memories.edit)
 
 export default router

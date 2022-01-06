@@ -38,6 +38,7 @@ async function tripDelete (req, res, next) {
   }
 }
 
+// Show a single trip 
 async function tripShow (req, res, next) {
   const { tripId } = req.params 
   try {

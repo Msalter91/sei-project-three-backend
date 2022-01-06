@@ -52,6 +52,21 @@ async function memoryShow (req, res, next) {
   }
 }
 
+// Edit a memory 
+async function memoryEdit (req, res, next) {
+  const { memoryId } = req.params
+  try {
+    const memoryToEdit = await Memory.findById(memoryId)
+    if (!memoryToEdit) {
+      throw new NotFound()
+    }
+    Object.assign(memoryToEdit, req.body)
+    await memoryToEdit.save()
+    return res.status(202).json(memoryToEdit)
+  } catch (err) {
+    next(err)
+  }
+}
 
 
 
@@ -61,4 +76,5 @@ export default {
   index: memoryIndex,
   delete: memoryDelete,
   show: memoryShow,
+  edit: memoryEdit,
 }
