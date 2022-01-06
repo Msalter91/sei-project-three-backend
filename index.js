@@ -4,10 +4,11 @@ import { connectToDatabase } from './db/helpers.js'
 import { port } from './config/environment.js'
 import country from './models/country.js'
 
+import logger from './lib/logger.js'
 import router from './config/router.js'
 
 const app = express()
-
+app.use('/', logger)
 app.use(express.json())
 app.use(router)
 
