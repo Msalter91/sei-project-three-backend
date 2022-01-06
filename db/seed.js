@@ -2,7 +2,7 @@ import Country from '../models/country.js'
 import Memory from '../models/memory.js'
 import trip from '../models/trip.js'
 
-import countires from './data/countries.js'
+import countries from './data/countries.js'
 import memories from './data/memories.js'
 import trips from './data/trips.js'
 
@@ -18,7 +18,7 @@ async function seed() {
 
 
     //adding countries
-    const countriesToCreate = await Country.create(countires)
+    const countriesToCreate = await Country.create(countries)
     console.log(countriesToCreate.length)
 
     //adding trips 
