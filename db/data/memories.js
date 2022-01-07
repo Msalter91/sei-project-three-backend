@@ -5,7 +5,7 @@ function randomCoordinate () {
 export default [{
   name: 'Findind a cool horse',
   location: 'desert',
-  image: 'url go here',
+  image: 'https://ichef.bbci.co.uk/news/976/cpsprodpb/B875/production/_102512274_gettyimages-518360318.jpg',
   notes: 'met horse, was cool horse',
   lat: 'N40.019288',
   long: 'w12.09866',
