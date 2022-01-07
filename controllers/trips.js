@@ -1,5 +1,6 @@
 import { NotFound } from '../lib/errors.js'
 import trip from '../models/trip.js'
+import { checkAccessRights } from './authHelpers.js'
 
 // add a trip 
 
@@ -31,6 +32,9 @@ async function tripDelete (req, res, next) {
     if (!tripToDelete) {
       throw new NotFound()
     }
+
+    checkAccessRights(tripToDelete, req.currentUser)
+
     await tripToDelete.remove()
     return res.status(204)
   } catch (err) {
@@ -59,6 +63,9 @@ async function tripEdit (req, res, next) {
     if (!tripToEdit) {
       throw new NotFound()
     }
+
+    checkAccessRights(tripToEdit, req.currentUser)
+
     Object.assign(tripToEdit, req.body)
     await tripToEdit.save()
     return res.status(202).json(tripToEdit)

@@ -1,5 +1,6 @@
 import Memory from '../models/memory.js'
 import { NotFound } from '../lib/errors.js'
+import { checkAccessRights } from './authHelpers.js'
 
 
 
@@ -31,6 +32,9 @@ async function memoryDelete (req, res, next) {
     if (!memoryToDelete) {
       throw new NotFound()
     }
+
+    checkAccessRights(memoryToDelete, req.currentUser)
+
     await memoryToDelete.remove()
     return res.sendStatus(204)
   } catch (err) {
@@ -60,6 +64,9 @@ async function memoryEdit (req, res, next) {
     if (!memoryToEdit) {
       throw new NotFound()
     }
+
+    checkAccessRights(memoryToEdit, req.currentUser)
+
     Object.assign(memoryToEdit, req.body)
     await memoryToEdit.save()
     return res.status(202).json(memoryToEdit)
