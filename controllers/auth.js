@@ -22,7 +22,7 @@ async function register(req, res, next) {
 
 async function login (req, res, next) {
   try {
-    if (req.body.password) throw new Unauthorized()
+    if (!req.body.password) throw new Unauthorized()
 
     const user = await User.findOne( {
       email: req.body.email })
