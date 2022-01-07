@@ -41,7 +41,17 @@ async function seed() {
     console.log('Memories created:',createdMemories.length)
 
     //adding trips 
-    const tripsWithData = trips.map(trip => ({ ...trip, addedBy: adminUser._id }))
+    const tripsWithData = trips.map((trip, index) => {
+      const memoriesIds = []
+      // add memories to trips, increasing the amount of memories stored on each trip, so that we have a variety of memories per trip
+      for (let tripMemoryNumber = 0; tripMemoryNumber < index; tripMemoryNumber++){
+        // check that we aren't exceeding the number of memories that exist
+        if (tripMemoryNumber < createdMemories.length){
+          memoriesIds.push(createdMemories[tripMemoryNumber]._id)
+        }
+      }
+      return ({ ...trip, addedBy: adminUser._id, memories: memoriesIds })
+    })
     const tripsToCreate = await trip.create(tripsWithData)
     console.log('Trips created:', tripsToCreate.length)
 
