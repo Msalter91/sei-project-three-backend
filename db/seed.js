@@ -52,8 +52,8 @@ async function seed() {
       }
       return ({ ...trip, addedBy: adminUser._id, memories: memoriesIds })
     })
-    const tripsToCreate = await trip.create(tripsWithData)
-    console.log('Trips created:', tripsToCreate.length)
+    const createdTrips = await trip.create(tripsWithData)
+    console.log('Trips created:', createdTrips.length)
 
   } catch (err) {
     console.log(err)
