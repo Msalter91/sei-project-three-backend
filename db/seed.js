@@ -37,7 +37,6 @@ async function seed() {
 
     //adding memories 
     const createdMemories = await Memory.create(memories)
-    console.log(createdMemories)
     console.log('Memories created:',createdMemories.length)
 
     //adding trips 

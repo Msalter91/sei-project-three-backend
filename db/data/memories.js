@@ -1,3 +1,7 @@
+function randomCoordinate () {
+  return ((Math.random() * 360) - 180 )
+}
+
 export default [{
   name: 'Findind a cool horse',
   location: 'desert',
@@ -13,5 +17,21 @@ export default [{
   notes: 'met president, seemed nice',
   lat: 'N57.55468464',
   long: 'e12.654684836',
+},
+{
+  name: 'Met the presidtwo of Uzbekistan',
+  location: 'Tashkent',
+  image: 'new image url',
+  notes: 'met president, seemed nice',
+  lat: randomCoordinate(),
+  long: randomCoordinate(),
+},
+{
+  name: 'Met the presidone of Uzbekistan',
+  location: 'Tashkent',
+  image: 'another new image url',
+  notes: 'met president, seemed nice',
+  lat: randomCoordinate(),
+  long: randomCoordinate(),
 }
 ]
