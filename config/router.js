@@ -20,19 +20,19 @@ router.route('/trips')
   .get(trips.index)
 
 router.route('/trips/:tripId')
-  .delete(trips.delete)
+  .delete(secureRoute, trips.delete)
   .get(trips.show)
-  .put(trips.edit)
+  .put(secureRoute, trips.edit)
 
 // Memories 
 router.route('/memories')
-  .post(memories.create)
+  .post(secureRoute, memories.create)
   .get(memories.index)
 
 router.route('/memories/:memoryId')
-  .delete(memories.delete)
+  .delete(secureRoute, memories.delete)
   .get(memories.show)
-  .put(memories.edit)
+  .put(secureRoute, memories.edit)
 
 //Users
 router.route('/register')
