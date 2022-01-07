@@ -1,7 +1,7 @@
 import express from 'express'
 
 import { connectToDatabase } from './db/helpers.js'
-import { port } from './config/environment.js'
+import { port, routePrefix } from './config/environment.js'
 import country from './models/country.js'
 
 import logger from './lib/logger.js'
@@ -11,7 +11,7 @@ import errorHandler from './lib/errorHandler.js'
 const app = express()
 app.use('/', logger)
 app.use(express.json())
-app.use(router)
+app.use(routePrefix, router)
 app.use(errorHandler)
 
 app.get('/countries', async (req, res) => {
