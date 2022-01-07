@@ -7,6 +7,7 @@ import { checkAccessRights } from './authHelpers.js'
 // create a memory 
 async function memoryCreate (req, res, next) {
   try {
+    req.body.addedBy = req.currentUser
     const createdMemory = await Memory.create({ ...req.body })
     return res.status(201).json(createdMemory)
   } catch (err) {

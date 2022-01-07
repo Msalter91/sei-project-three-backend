@@ -6,6 +6,7 @@ import { checkAccessRights } from './authHelpers.js'
 
 async function tripCreate (req, res) {
   try {
+    req.body.addedBy = req.currentUser
     const createdTrip = await trip.create({
       ...req.body })
     return res.status(201).json(createdTrip)
@@ -34,9 +35,10 @@ async function tripDelete (req, res, next) {
     }
 
     checkAccessRights(tripToDelete, req.currentUser)
-
+    console.log('deleting trip:', tripToDelete._id)
     await tripToDelete.remove()
-    return res.status(204)
+    console.log('deleted')
+    return res.sendStatus(204)
   } catch (err) {
     next(err)
   }

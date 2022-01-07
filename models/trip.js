@@ -7,7 +7,7 @@ const tripSchema = new mongoose.Schema({
   dateStarted: { type: String },
   dateFinished: { type: String },
   memories: [{ type: mongoose.Schema.ObjectId, ref: 'Memory' }],
-  addedBy: { type: mongoose.Schema.ObjectId, ref: 'User' }, 
+  addedBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }, 
 })
 
 // todo add virtuals centerPoint, isPlanned, summaryImage 
