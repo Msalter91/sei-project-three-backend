@@ -8,6 +8,9 @@ import logger from './lib/logger.js'
 import router from './config/router.js'
 import errorHandler from './lib/errorHandler.js'
 
+import dotenv from 'dotenv'
+dotenv.config()
+
 const app = express()
 app.use('/', logger)
 app.use(express.json())
