@@ -36,12 +36,13 @@ async function seed() {
     console.log('Countries created:',countriesToCreate.length)
 
     //adding memories 
-    const memoriesToCreate = await Memory.create(memories)
-    console.log('Memories created:',memoriesToCreate.length)
+    const createdMemories = await Memory.create(memories)
+    console.log(createdMemories)
+    console.log('Memories created:',createdMemories.length)
 
     //adding trips 
-    const tripsWithAdminUser = trips.map(trip => ({ ...trip, addedBy: adminUser._id }))
-    const tripsToCreate = await trip.create(tripsWithAdminUser)
+    const tripsWithData = trips.map(trip => ({ ...trip, addedBy: adminUser._id }))
+    const tripsToCreate = await trip.create(tripsWithData)
     console.log('Trips created:', tripsToCreate.length)
 
   } catch (err) {
