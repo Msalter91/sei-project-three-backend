@@ -4,6 +4,7 @@ import countries from '../controllers/countries.js'
 import memories from '../controllers/memories.js'
 import trips from '../controllers/trips.js'
 import user from '../controllers/auth.js'
+import { secureRoute } from '../lib/secureRoute.js'
 
 
 const router = express.Router()
@@ -15,7 +16,7 @@ router.route('/countries')
 
 // Trips
 router.route('/trips')
-  .post(trips.create)
+  .post(secureRoute , trips.create)
   .get(trips.index)
 
 router.route('/trips/:tripId')
