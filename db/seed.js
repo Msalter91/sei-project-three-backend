@@ -36,8 +36,8 @@ async function seed() {
     console.log(countriesToCreate.length)
 
     //adding trips 
-    const tripsTCreate = await trip.create(trips)
-    console.log(tripsTCreate.length)
+    const tripsToCreate = await trip.create(trips)
+    console.log(tripsToCreate.length)
 
     //adding memories 
     const memoriesToCreate = await Memory.create(memories)
