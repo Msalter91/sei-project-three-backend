@@ -22,12 +22,14 @@ async function seed() {
     console.log('creating admin user')
     console.log('Admin Pass:', process.env.ADMIN_PASS)
     const adminUser = await User.create({
-      username: 'admin',
+      displayName: 'admin',
       email: 'admin@mail.com',
+      image: 'http://clipart-library.com/image_gallery/407868.png',
       password: process.env.ADMIN_PASS,
       passwordConfirmation: process.env.ADMIN_PASS,
     })
 
+    console.log('Admin user ID:', adminUser._id)
 
     //adding countries
     const countriesToCreate = await Country.create(countries)
