@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   firstName: { type: String },
   surname: { type: String },
+  location: { type: String },
   password: { type: String, required: true },
   image: { type: String, required: true, default: 'URL for blank display pic goes here' },
   about: { type: String },

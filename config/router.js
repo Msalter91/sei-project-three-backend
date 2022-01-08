@@ -41,4 +41,7 @@ router.route('/register')
 router.route('/login')
   .post(user.login)
 
+router.route('/profile/:userId')
+  .get(user.display)
+
 export default router
