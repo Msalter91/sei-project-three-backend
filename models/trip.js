@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 
 const tripSchema = new mongoose.Schema({
-  title: { type: String, maxlength: 50,required: true },
+  title: { type: String, maxlength: 50 },
   notes: { type: String, maxlength: 300 },
-  countryVisited: { type: String, required: true },
+  countryVisited: { type: String },
   dateStarted: { type: String },
   dateFinished: { type: String },
   memories: [{ type: mongoose.Schema.ObjectId, ref: 'Memory' }],
