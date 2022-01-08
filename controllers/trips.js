@@ -4,14 +4,14 @@ import { checkAccessRights } from './authHelpers.js'
 
 // add a trip 
 
-async function tripCreate (req, res) {
+async function tripCreate (req, res, next) {
   try {
     req.body.addedBy = req.currentUser
     const createdTrip = await trip.create({
       ...req.body })
     return res.status(201).json(createdTrip)
   } catch (err) {
-    console.log(err)
+    next(err)
   }
 }
 
