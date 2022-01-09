@@ -43,5 +43,6 @@ router.route('/login')
 
 router.route('/profile/:userId')
   .get(user.display)
+  .put(user.edit)
 
 export default router

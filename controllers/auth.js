@@ -55,8 +55,26 @@ async function display (req, res, next) {
   }
 }
 
+// Edit a memory 
+async function edit (req, res, next) {
+  const { userId } = req.params
+  try {
+    const userToEdit = await User.findById(userId)
+    if (!userToEdit) {
+      throw new NotFound()
+    }
+
+    Object.assign(userToEdit, req.body)
+    await userToEdit.save()
+    return res.status(202).json(userToEdit)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export default {
   register,
   login,
   display,
+  edit,
 }
