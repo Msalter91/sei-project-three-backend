@@ -48,7 +48,7 @@ async function tripDelete (req, res, next) {
 async function tripShow (req, res, next) {
   const { tripId } = req.params 
   try {
-    const tripToShow = await trip.findById(tripId)
+    const tripToShow = await trip.findById(tripId).populate('memories')
     if (!tripToShow) {
       throw new NotFound()
     }
