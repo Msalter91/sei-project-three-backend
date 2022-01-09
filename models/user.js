@@ -6,12 +6,12 @@ import bcrypt from 'bcrypt'
 const userSchema = new mongoose.Schema({
   displayName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  firstName: { type: String },
-  surname: { type: String },
+  firstName: { type: String, maxlength: 30 },
+  surname: { type: String, maxlength: 30 },
   location: { type: String },
   password: { type: String, required: true },
   image: { type: String, required: true, default: 'URL for blank display pic goes here' },
-  about: { type: String },
+  about: { type: String, maxlength: 300 },
   trips: { type: mongoose.Schema.ObjectId, ref: 'Trip' },
   memories: { type: mongoose.Schema.ObjectId, ref: 'Memory' },  
 })
