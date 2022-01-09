@@ -9,6 +9,7 @@ import trips from './data/trips.js'
 
 import { connectToDatabase, truncateDb, disconnectDb } from './helpers.js'
 import dotenv from 'dotenv'
+import memory from '../models/memory.js'
 dotenv.config()
 
 async function seed() {
@@ -36,7 +37,8 @@ async function seed() {
     console.log('Countries created:',countriesToCreate.length)
 
     //adding memories 
-    const createdMemories = await Memory.create(memories)
+    const memoriesWithData = memories.map(singleMemory=>({ ...singleMemory, addedBy: adminUser._id }))
+    const createdMemories = await Memory.create(memoriesWithData)
     console.log('Memories created:',createdMemories.length)
 
     //adding trips 

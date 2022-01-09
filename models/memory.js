@@ -9,6 +9,7 @@ const memorySchema = new mongoose.Schema({
   long: { type: Number, required: true },
   visitDate: { type: String },
   pairedTrip: { type: mongoose.Schema.ObjectId, ref: 'Trip' },
+  addedBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }, 
 },
 { timestamps: { createdAt: 'created_at' } }
 )
