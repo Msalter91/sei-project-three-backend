@@ -9,7 +9,6 @@ import trips from './data/trips.js'
 
 import { connectToDatabase, truncateDb, disconnectDb } from './helpers.js'
 import dotenv from 'dotenv'
-import memory from '../models/memory.js'
 dotenv.config()
 
 async function seed() {
