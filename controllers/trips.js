@@ -46,7 +46,6 @@ async function tripDelete (req, res, next) {
 
 // Show a single trip 
 async function tripShow (req, res, next) {
-  console.log(req.params)
   const { tripId } = req.params 
   try {
     const tripToShow = await trip.findById(tripId).populate('memories')
