@@ -7,6 +7,7 @@ import { checkAccessRights } from './authHelpers.js'
 async function tripCreate (req, res, next) {
   try {
     req.body.addedBy = req.currentUser
+    req.body.title = `${req.currentUser.displayName}'s Adventure`
     const createdTrip = await trip.create({
       ...req.body })
     return res.status(201).json(createdTrip)
