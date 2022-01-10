@@ -14,6 +14,9 @@ const router = express.Router()
 router.route('/countries')
   .get(countries.index)
 
+router.route('/countries/:countryId')
+  .get(countries.show)
+
 // Trips
 router.route('/trips')
   .post(secureRoute , trips.create)
