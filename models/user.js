@@ -3,6 +3,7 @@ import mongooseUniqueValidator from 'mongoose-unique-validator'
 import bcrypt from 'bcrypt'
 
 
+
 const userSchema = new mongoose.Schema({
   displayName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
@@ -15,6 +16,7 @@ const userSchema = new mongoose.Schema({
   trips: [{ type: mongoose.Schema.ObjectId, ref: 'Trip' }],
   memories: [{ type: mongoose.Schema.ObjectId, ref: 'Memory' }],  
 })
+
 
 userSchema
   .virtual('passwordConfirmation')
