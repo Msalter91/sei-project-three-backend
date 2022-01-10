@@ -18,7 +18,7 @@ async function tripCreate (req, res, next) {
 
 async function tripIndex (req, res, next) {
   try { 
-    const trips = await trip.find()
+    const trips = await trip.find().populate( 'memories').populate('addedBy')
     return res.status(200).json(trips) 
   } catch (err) {
     next(err)
