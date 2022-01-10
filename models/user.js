@@ -12,8 +12,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   image: { type: String, required: true, default: 'URL for blank display pic goes here' },
   about: { type: String, maxlength: 300 },
-  trips: { type: mongoose.Schema.ObjectId, ref: 'Trip' },
-  memories: { type: mongoose.Schema.ObjectId, ref: 'Memory' },  
+  trips: [{ type: mongoose.Schema.ObjectId, ref: 'Trip' }],
+  memories: [{ type: mongoose.Schema.ObjectId, ref: 'Memory' }],  
 })
 
 userSchema

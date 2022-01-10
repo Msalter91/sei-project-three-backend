@@ -45,7 +45,7 @@ async function login (req, res, next) {
 async function display (req, res, next) {
   const { userId } = req.params 
   try {
-    const userToShow = await User.findById(userId)
+    const userToShow = await (await User.findById(userId)).populate('Memory')
     if (!userToShow) {
       throw new NotFound()
     }
