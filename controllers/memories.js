@@ -47,7 +47,7 @@ async function memoryDelete (req, res, next) {
 async function memoryShow (req, res, next) {
   const { memoryId } = req.params 
   try {
-    const memoryToShow = await Memory.findById(memoryId)
+    const memoryToShow = await Memory.findById(memoryId).populate('addedBy')
     if (!memoryToShow) {
       throw new NotFound()
     }

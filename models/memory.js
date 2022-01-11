@@ -14,4 +14,5 @@ const memorySchema = new mongoose.Schema({
 { timestamps: { createdAt: 'created_at' } }
 )
 
+
 export default mongoose.model('Memory', memorySchema)
