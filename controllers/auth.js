@@ -11,7 +11,7 @@ async function register(req, res, next) {
     }
     
     console.log('registering user:', req.body.displayName)
-    const createdUser = await User.create(req.body)
+    const createdUser = await User.create({ ...req.body, image: 'https://i.imgur.com/vX6eUuR.png' })
     return res.status(201).json({
       message: `Welcome ${createdUser.displayName}`,
     })
@@ -55,7 +55,7 @@ async function display (req, res, next) {
   }
 }
 
-// Edit a memory 
+// Edit a user 
 async function edit (req, res, next) {
   const { userId } = req.params
   try {
