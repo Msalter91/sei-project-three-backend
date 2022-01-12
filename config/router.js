@@ -44,7 +44,7 @@ router.route('/register')
 router.route('/login')
   .post(user.login)
 
-router.route('/profile/:userId')
+router.route('/profile')
   .get(user.display)
   .put(user.edit)
 
