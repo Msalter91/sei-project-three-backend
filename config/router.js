@@ -45,7 +45,7 @@ router.route('/register')
 router.route('/login')
   .post(auth.login)
 
-router.route('/profile/:id')
+router.route('/profile/:userId')
   .get(users.display)
 // requires handling admin permissions before enabling:
 // .put(secureRoute, users.edit)

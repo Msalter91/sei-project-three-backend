@@ -1,32 +1,32 @@
 import User from '../models/user.js'
 import { NotFound } from '../lib/errors.js'
 
-const privateDataFields = {
-  email: '',
-  firstName: '',
-  surname: '',
-}
+// Cannot use spreading to clear private props, as mongoose objects are complex
+const privateDataFields = [
+  ['email', ''],
+  ['firstName', ''],
+  ['surname', '']
+]
 
 async function display (req, res, next) { 
   // if route has parameter, target that user, else use token for userId
-  const paramId = req.params?.userId
-  const loginId = req.currentUser?._id
+  const paramId = req?.params?.userId
+  const loginId = req?.currentUser?._id
   const targetId = paramId || loginId
 
   try {
-    let responseData = {}
     const userToShow = await User.findById(targetId).populate('Memory')
     if (!userToShow) {
       throw new NotFound()
     }
-    if (targetId === loginId){
-      responseData = userToShow
-    } else {
-      responseData = { ...userToShow, ...privateDataFields }
-    }
+    if (targetId !== loginId){
+      privateDataFields.forEach(field =>{
+        userToShow[field[0]] = field[1]
+      })
+    } 
 
-    console.log('User: ',loginId, 'requested user data about: ', targetId, '\nsending:\n', responseData)
-    return res.status(200).json(responseData)
+    console.log('User:',loginId, 'requested user data for:', targetId, '\nsending:\n', userToShow)
+    return res.status(200).json(userToShow)
   } catch (err) {
     next(err)
   }
