@@ -43,7 +43,7 @@ async function login (req, res, next) {
 }
 
 async function display (req, res, next) {
-  const userId = req.currentUser._id
+  const { userId } = req.params
   try {
     const userToShow = await User.findById(userId).populate('Memory')
     if (!userToShow) {
