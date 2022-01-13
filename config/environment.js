@@ -1,6 +1,8 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 export const dbName = 'placebook-db'
-export const dbURI = `mongodb://127.0.0.1/${dbName}`
-export const port = 4000
-export const jwtSecret = 'elephantbongotriumph'
-export const adminPW = 'testytestytest'
-export const routePrefix = '/api'
+export const dbURI = process.env.DB_URI || `mongodb://127.0.0.1/${dbName}`
+export const port = process.env.DB_PORT || 4000
+export const jwtSecret = process.env.JWT_SECRET || 'elephantbongotriumph'
+export const adminPW = process.env.ADMIN_PASS
