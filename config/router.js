@@ -45,13 +45,13 @@ router.route('/register')
 router.route('/login')
   .post(auth.login)
 
-router.route('/profile')
-  .get(secureRoute, users.display)
-  .put(secureRoute, users.edit)
-
 router.route('/profile/:id')
   .get(users.display)
 // requires handling admin permissions before enabling:
 // .put(secureRoute, users.edit)
+
+router.route('/profile')
+  .get(secureRoute, users.display)
+  .put(secureRoute, users.edit)
 
 export default router
