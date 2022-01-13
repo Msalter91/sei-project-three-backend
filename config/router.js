@@ -45,7 +45,7 @@ router.route('/login')
   .post(user.login)
 
 router.route('/profile')
-  .get(user.display)
-  .put(user.edit)
+  .get(secureRoute, user.display)
+  .put(secureRoute, user.edit)
 
 export default router

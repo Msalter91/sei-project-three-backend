@@ -43,9 +43,9 @@ async function login (req, res, next) {
 }
 
 async function display (req, res, next) {
-  const { userId } = req.params 
+  const userId = req.currentUser._id
   try {
-    const userToShow = await (await User.findById(userId)).populate('Memory')
+    const userToShow = await User.findById(userId).populate('Memory')
     if (!userToShow) {
       throw new NotFound()
     }
@@ -57,7 +57,7 @@ async function display (req, res, next) {
 
 // Edit a user 
 async function edit (req, res, next) {
-  const { userId } = req.params
+  const userId  = req.currentUser._id
   try {
     const userToEdit = await User.findById(userId)
     if (!userToEdit) {
