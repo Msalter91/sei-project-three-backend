@@ -57,7 +57,7 @@ async function display (req, res, next) {
 
 // Edit a user 
 async function edit (req, res, next) {
-  const userId  = req.currentUser._id
+  const { userId }  = req.params
   try {
     const userToEdit = await User.findById(userId)
     if (!userToEdit) {
