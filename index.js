@@ -1,20 +1,21 @@
 import express from 'express'
+import cors from 'cors'
 
 import { connectToDatabase } from './db/helpers.js'
-import { port, routePrefix } from './config/environment.js'
+import { port } from './config/environment.js'
 import country from './models/country.js'
 
 import logger from './lib/logger.js'
 import router from './config/router.js'
 import errorHandler from './lib/errorHandler.js'
 
-import dotenv from 'dotenv'
-dotenv.config()
+
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 app.use('/', logger)
-app.use(routePrefix, router)
+app.use('/api', router)
 app.use(errorHandler)
 
 app.get('/countries', async (req, res) => {
