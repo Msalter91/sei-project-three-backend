@@ -3,7 +3,8 @@ import express from 'express'
 import countries from '../controllers/countries.js'
 import memories from '../controllers/memories.js'
 import trips from '../controllers/trips.js'
-import user from '../controllers/auth.js'
+import auth from '../controllers/auth.js'
+import users from '../controllers/users.js'
 import { secureRoute } from '../lib/secureRoute.js'
 
 
@@ -39,13 +40,18 @@ router.route('/memories/:memoryId')
 
 //Users
 router.route('/register')
-  .post(user.register)
+  .post(auth.register)
 
 router.route('/login')
-  .post(user.login)
+  .post(auth.login)
 
 router.route('/profile')
-  .get(user.display)
-  .put(user.edit)
+  .get(secureRoute, users.display)
+  .put(secureRoute, users.edit)
+
+router.route('/profile/:id')
+  .get(users.display)
+// requires handling admin permissions before enabling:
+// .put(secureRoute, users.edit)
 
 export default router
