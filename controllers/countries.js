@@ -2,7 +2,9 @@ import Country from '../models/country.js'
 
 import { NotFound } from '../lib/errors.js'
 
-// Add a country 
+// Add a country
+
+
 
 async function countryIndex (req, res) {
   try {
