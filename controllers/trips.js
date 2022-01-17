@@ -1,3 +1,4 @@
+import deleteTripAndMemoriesByTripObject from '../db/useCases/trips.js'
 import { NotFound } from '../lib/errors.js'
 import trip from '../models/trip.js'
 import { checkAccessRights } from './authHelpers.js'
@@ -36,9 +37,7 @@ async function tripDelete (req, res, next) {
     }
 
     checkAccessRights(tripToDelete, req.currentUser)
-    console.log('deleting trip:', tripToDelete._id)
-    await tripToDelete.remove()
-    console.log('deleted')
+    deleteTripAndMemoriesByTripObject(tripToDelete)
     return res.sendStatus(204)
   } catch (err) {
     next(err)
