@@ -1,8 +1,8 @@
-import User from '../models/user.js'
-
 import jwt from 'jsonwebtoken'
+
+import User from '../models/user.js'
 import { jwtSecret } from '../config/environment.js'
-import { Unauthorized, NotFound } from '../lib/errors.js'
+import { Unauthorized } from '../lib/errors.js'
 
 async function register(req, res, next) {
   try { 
@@ -42,39 +42,7 @@ async function login (req, res, next) {
   }
 }
 
-async function display (req, res, next) {
-  const { userId } = req.params
-  try {
-    const userToShow = await User.findById(userId).populate('Memory')
-    if (!userToShow) {
-      throw new NotFound()
-    }
-    return res.status(200).json(userToShow)
-  } catch (err) {
-    next(err)
-  }
-}
-
-// Edit a user 
-async function edit (req, res, next) {
-  const { userId }  = req.params
-  try {
-    const userToEdit = await User.findById(userId)
-    if (!userToEdit) {
-      throw new NotFound()
-    }
-
-    Object.assign(userToEdit, req.body)
-    await userToEdit.save()
-    return res.status(202).json(userToEdit)
-  } catch (err) {
-    next(err)
-  }
-}
-
 export default {
   register,
   login,
-  display,
-  edit,
 }

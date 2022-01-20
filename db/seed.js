@@ -24,7 +24,7 @@ async function seed() {
     const adminUser = await User.create({
       displayName: 'admin',
       email: 'admin@mail.com',
-      image: 'http://clipart-library.com/image_gallery/407868.png',
+      image: 'https://res.cloudinary.com/team-mad/image/upload/v1642010300/placebook-profile-images/k0kj0qyufel6ucygpxwn.jpg',
       password: process.env.ADMIN_PASS,
       passwordConfirmation: process.env.ADMIN_PASS,
     })
