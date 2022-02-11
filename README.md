@@ -6,7 +6,7 @@
 
 Project 3 was a one-week team coded project with [Duncan Browne](https://github.com/DBBrowne) and [Alex Chan](https://github.com/Achan81). We worked using a single Git repository for the first time. We wanted to create an app all about travel. Users would be able to create trips, and within that trip users can add individual memories of special events that took place. Trips could be discoverable by country and editable at any time.
 
-The Brief
+## The Brief
 The brief was to build and deploy the fullstack of a MERN app using React for the frontend and Node.js for the backend.
 
 ## Built with
