@@ -128,7 +128,8 @@ We were very ambitious in this challenge and met some significant challenges alo
 ## Known bugs
 - If a user doesn’t enter a valid location on the map it defaults to null island
 - Map sizing on the ‘see trips’ page has overspilled and is too wide
-- The profile view does not currently work in the deployed environment
+- <del>The profile view does not currently work in the deployed environment</del>
+This has now been fixed!
 
 ## Future Improvements
 - Ability for users to favourite trips
